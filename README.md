@@ -1,47 +1,46 @@
-# Dev Problem Solving
+# Problemas y soluciones de desarrollo
 
-Portfolio de ingeniería de software con casos técnicos reconstruidos desde cero
-y datos sintéticos. La documentación está en español; los nombres de archivos
-y directorios, en inglés. No son módulos extraídos de proyectos privados.
+En este repositorio comparto problemas técnicos que encuentro durante el desarrollo de distintos proyectos y las soluciones que implemento para resolverlos.
 
-Cada caso explica el problema, el análisis, las alternativas, la implementación
-y la validación. Los ejemplos no requieren servicios remotos ni datos de
-usuarios.
+La idea es mostrar el razonamiento detrás de cada solución, las decisiones técnicas que tomo y las pruebas utilizadas para comprobar su funcionamiento.
+
+Algunos casos nacieron durante el desarrollo de proyectos privados que siguen en curso. Para compartir lo aprendido, presento implementaciones independientes y simplificadas: no publico código fuente privado, datos personales, prompts, arquitecturas completas, credenciales ni configuraciones sensibles.
+
+## Cómo trabajo
+
+1. Identifico un problema concreto y defino qué resultado permitiría comprobar una mejora.
+2. Analizo las posibles soluciones y sus limitaciones.
+3. Implemento una solución acotada, procurando separar responsabilidades.
+4. Pruebo casos normales, errores y condiciones límite.
+5. Documento las decisiones técnicas y verifico que los cambios no introduzcan regresiones.
 
 ## Casos
 
-| Caso | Problema técnico | Qué demuestra |
-|---|---|---|
-| [Arquitectura modular](./software-architecture/README.md) | Mantener la orquestación independiente del backend y limitar el fallback a fallos esperados. | Contratos explícitos, inversión de dependencias y pruebas de rutas de error. |
-| [Integración de LLM local](./llm-integration/README.md) | Integrar formatos de chat distintos sin enviar peticiones fuera del equipo local. | Adaptación de APIs, validación de payload/respuesta y manejo de errores de transporte. |
-| [Preparación de modelos ONNX](./machine-learning/README.md) | Evitar publicar una cuantización incompleta o inválida. | Cuantización dinámica, validación ONNX y reemplazo atómico del artefacto. |
+- **[Diseño de una arquitectura modular](software-architecture/README.md)**  
+  Separación de responsabilidades, manejo de errores y mecanismos de fallback en un flujo de generación.
 
-No se incluyen casos de limpieza de datasets ni fine-tuning: la auditoría no
-encontró evidencia suficiente para describirlos sin inventar resultados.
+- **[Integración con modelos de lenguaje locales](llm-integration/README.md)**  
+  Comunicación HTTP, validación de solicitudes y respuestas, y control de límites para evitar consumos inesperados.
 
-## Requisitos
+- **[Optimización de modelos de machine learning](machine-learning/README.md)**  
+  Cuantización dinámica de modelos ONNX, validación de resultados y publicación segura de artefactos.
 
-- Python 3.10 o posterior para los casos de arquitectura e integración local.
-- Las dependencias ONNX específicas del caso de Machine Learning, indicadas en
-  [requirements.txt](./machine-learning/requirements.txt).
+## Pruebas
 
-## Ejecutar las pruebas
+Cada caso incluye pruebas automatizadas para verificar su comportamiento, contemplando situaciones normales, entradas inválidas y condiciones límite.
 
-Desde la raíz del repositorio:
+Para ejecutar las pruebas desde la raíz del repositorio:
 
-```powershell
-python -m unittest discover -s software-architecture/examples -p "test_*.py"
-python -m unittest discover -s llm-integration/examples -p "test_*.py"
-python -m pip install -r machine-learning/requirements.txt
-python -m unittest discover -s machine-learning/examples -p "test_*.py"
+```bash
+python -m unittest discover -s software-architecture/examples
+python -m unittest discover -s llm-integration/examples
+python -m unittest discover -s machine-learning/examples
 ```
 
-Las suites suman **17 pruebas**. Usan dobles de transporte y un modelo ONNX
-sintético; no descargan modelos ni contactan servicios de inferencia. Las
-pruebas de arquitectura e integración usan solo la biblioteca estándar.
+El módulo de machine learning requiere instalar las dependencias indicadas en su archivo `requirements.txt`.
 
-## Alcance y privacidad
+## Herramientas y prácticas
 
-Los ejemplos son implementaciones nuevas de patrones generales. No contienen
-prompts, conversaciones, identificadores de modelos privados, credenciales,
-rutas locales ni artefactos de modelos.
+Python · integración con LLM · Ollama · ONNX Runtime · pruebas automatizadas · diseño modular · validación de datos · manejo de errores · optimización de modelos.
+
+> Los ejemplos publicados son implementaciones independientes y simplificadas, desarrolladas para este portfolio. Su objetivo es demostrar criterios de diseño, resolución de problemas y validación técnica sin revelar código, datos ni detalles internos de los proyectos privados.
