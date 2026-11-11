@@ -39,4 +39,10 @@ python -m unittest discover -s machine-learning/examples -p "test_*.py"
 
 Las suites suman **28 pruebas**. Usan dobles de transporte, un modelo ONNX sintético y una base SQLite temporal; no descargan modelos ni contactan servicios de inferencia.
 
-Los casos de arquitectura, integración y persistencia utilizan únicamente la biblioteca estándar de
+Los casos de arquitectura, integración y persistencia utilizan únicamente la biblioteca estándar de Python.
+
+## Herramientas y prácticas
+
+Python · SQLite · integración con LLM · Ollama · ONNX Runtime · pruebas automatizadas · diseño modular · validación de datos · manejo de errores · persistencia de información · optimización de modelos.
+
+> Los ejemplos publicados son implementaciones independientes y simplificadas, desarrolladas para este portfolio. Su objetivo es demostrar criterios de diseño, resolución de problemas y validación técnica sin revelar código, datos ni detalles internos de los proyectos privados.
